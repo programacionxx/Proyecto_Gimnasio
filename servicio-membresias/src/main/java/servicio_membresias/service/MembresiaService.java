@@ -1,6 +1,13 @@
+package servicio_membresias.service;
+
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import servicio_membresias.model.Membresia;
+import servicio_membresias.repository.MembresiaRepository;
 
 @Service
 public class MembresiaService {

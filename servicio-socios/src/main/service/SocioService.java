@@ -1,8 +1,10 @@
-import cl.gimnasio.socios.demo.socios.model.Socio;
-import cl.gimnasio.socios.demo.socios.repository.SocioRepository;
+package servicio_socios.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import servicio_socios.model.Socio;
+import servicio_socios.repository.SocioRepository;
 
 import java.util.Map;
 

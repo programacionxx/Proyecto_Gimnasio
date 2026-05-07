@@ -1,3 +1,5 @@
+package servicio_membresias.model;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;

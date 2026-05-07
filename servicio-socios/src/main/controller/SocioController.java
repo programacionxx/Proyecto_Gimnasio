@@ -1,6 +1,9 @@
-import com.gimnasio.socios.service.SocioService;
+package servicio_socios.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import servicio_socios.model.Socio;
+import servicio_socios.service.SocioService;
 
 @RestController
 @RequestMapping("/api/socios")
