@@ -25,13 +25,17 @@ public class SocioService {
                 .uri("http://localhost:8081/api/auth/registrar")
                 .bodyValue(Map.of(
                     "username", nuevoSocio.getEmail(),
-                    "password", "Socio123*", 
+                    "password", "Socio123*",
                     "rol", "SOCIO"
                 ))
                 .retrieve()
                 .bodyToMono(Object.class)
-                .block(); 
+                .block();
 
         return nuevoSocio;
+    }
+
+    public boolean existePorId(Long id) {
+        return socioRepository.existsById(id);
     }
 }

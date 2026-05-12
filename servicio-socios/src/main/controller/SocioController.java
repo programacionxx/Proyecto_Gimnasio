@@ -16,4 +16,9 @@ public class SocioController {
     public Socio crearSocio(@RequestBody Socio socio) {
         return socioService.registrarSocioCompleto(socio);
     }
+
+    @GetMapping("/{id}")
+    public boolean existeSocio(@PathVariable Long id) {
+        return socioService.existePorId(id);
+    }
 }
