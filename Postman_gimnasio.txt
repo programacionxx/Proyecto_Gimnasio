@@ -1,0 +1,288 @@
+================================================================================
+INSTRUCCIONES PARA PROBAR LOS SERVICIOS CON POSTMAN
+================================================================================
+
+PREREQUISITOS:
+- MySQL debe estar corriendo
+- Las bases de datos deben estar creadas:
+  * db_gimnasio_auth
+  * db_gimnasio_socios
+  * db_gimnasio_membresias
+- Los servicios deben estar ejecutándose
+
+================================================================================
+1. SERVIDOR EUREKA
+================================================================================
+
+URL: http://localhost:8761
+
+Descripción: Servidor de registro y descubrimiento de servicios (no tiene endpoints REST)
+
+Verificar:
+- Abre en navegador: http://localhost:8761
+- Deberías ver el dashboard de Eureka con los servicios registrados
+
+================================================================================
+2. API GATEWAY
+================================================================================
+
+Puerto: 8080
+URL Base: http://localhost:8080
+
+Descripción: Gateway que redirecciona las requests a los microservicios
+
+ENDPOINTS:
+- Todas las rutas se redirecciona automáticamente a través del gateway
+
+Ejemplo:
+Método: GET
+URL: http://localhost:8080/api/auth/registrar
+(Se redirecciona automáticamente a http://localhost:8081/api/auth/registrar)
+
+================================================================================
+3. SERVICIO AUTENTICACION
+================================================================================
+
+Puerto: 8081
+URL Base: http://localhost:8081
+
+ENDPOINT 1: REGISTRAR USUARIO
+Método: POST
+URL: http://localhost:8081/api/auth/registrar
+
+Headers:
+Content-Type: application/json
+
+Body (JSON):
+{
+  "username": "usuario1",
+  "password": "password123",
+  "rol": "ADMIN"
+}
+
+Respuesta esperada (200 OK):
+{
+  "id": 1,
+  "username": "usuario1",
+  "password": "$2a$10$...",
+  "rol": "ADMIN"
+}
+
+EJEMPLOS DE USUARIOS PARA CREAR:
+Usuario 1:
+{
+  "username": "admin",
+  "password": "admin123",
+  "rol": "ADMIN"
+}
+
+Usuario 2:
+{
+  "username": "jhondoe",
+  "password": "jdoe2024",
+  "rol": "MEMBER"
+}
+
+Usuario 3:
+{
+  "username": "mariagarcia",
+  "password": "maria456",
+  "rol": "MEMBER"
+}
+
+================================================================================
+4. SERVICIO SOCIOS
+================================================================================
+
+Puerto: 8082
+URL Base: http://localhost:8082
+
+ENDPOINT 1: OBTENER TODOS LOS SOCIOS
+Método: GET
+URL: http://localhost:8082/api/socios
+
+Headers:
+Content-Type: application/json
+
+Respuesta esperada (200 OK):
+Lista vacía inicialmente: []
+
+ENDPOINT 2: CREAR UN SOCIO
+Método: POST
+URL: http://localhost:8082/api/socios
+
+Headers:
+Content-Type: application/json
+
+Body (JSON):
+{
+  "nombre": "Juan Perez",
+  "email": "juan@example.com",
+  "telefono": "555-1234",
+  "estado": "ACTIVO"
+}
+
+Respuesta esperada (201 Created):
+{
+  "id": 1,
+  "nombre": "Juan Perez",
+  "email": "juan@example.com",
+  "telefono": "555-1234",
+  "estado": "ACTIVO"
+}
+
+EJEMPLOS PARA CREAR:
+Socio 1:
+{
+  "nombre": "Juan Perez",
+  "email": "juan.perez@example.com",
+  "telefono": "555-1234",
+  "estado": "ACTIVO"
+}
+
+Socio 2:
+{
+  "nombre": "Maria Garcia",
+  "email": "maria.garcia@example.com",
+  "telefono": "555-5678",
+  "estado": "ACTIVO"
+}
+
+Socio 3:
+{
+  "nombre": "Carlos Lopez",
+  "email": "carlos.lopez@example.com",
+  "telefono": "555-9012",
+  "estado": "INACTIVO"
+}
+
+ENDPOINT 3: OBTENER SOCIO POR ID
+Método: GET
+URL: http://localhost:8082/api/socios/1
+
+Headers:
+Content-Type: application/json
+
+Respuesta esperada (200 OK):
+{
+  "id": 1,
+  "nombre": "Juan Perez",
+  "email": "juan@example.com",
+  "telefono": "555-1234",
+  "estado": "ACTIVO"
+}
+
+================================================================================
+5. SERVICIO MEMBRESIAS
+================================================================================
+
+Puerto: 8083
+URL Base: http://localhost:8083
+
+ENDPOINT 1: OBTENER TODAS LAS MEMBRESIAS
+Método: GET
+URL: http://localhost:8083/api/membresias
+
+Headers:
+Content-Type: application/json
+
+Respuesta esperada (200 OK):
+Lista vacía inicialmente: []
+
+ENDPOINT 2: CREAR UNA MEMBRESIA
+Método: POST
+URL: http://localhost:8083/api/membresias
+
+Headers:
+Content-Type: application/json
+
+Body (JSON):
+{
+  "nombre": "Membresia Basica",
+  "descripcion": "Acceso a areas comunes",
+  "precio": 29.99,
+  "duracion_dias": 30
+}
+
+Respuesta esperada (201 Created):
+{
+  "id": 1,
+  "nombre": "Membresia Basica",
+  "descripcion": "Acceso a areas comunes",
+  "precio": 29.99,
+  "duracion_dias": 30
+}
+
+EJEMPLOS PARA CREAR:
+Membresia 1:
+{
+  "nombre": "Membresia Basica",
+  "descripcion": "Acceso a areas comunes y piscina",
+  "precio": 29.99,
+  "duracion_dias": 30
+}
+
+Membresia 2:
+{
+  "nombre": "Membresia Premium",
+  "descripcion": "Acceso completo a todas las instalaciones",
+  "precio": 59.99,
+  "duracion_dias": 30
+}
+
+Membresia 3:
+{
+  "nombre": "Membresia VIP",
+  "descripcion": "Acceso completo mas entrenador personal",
+  "precio": 99.99,
+  "duracion_dias": 30
+}
+
+ENDPOINT 3: OBTENER MEMBRESIA POR ID
+Método: GET
+URL: http://localhost:8083/api/membresias/1
+
+Headers:
+Content-Type: application/json
+
+Respuesta esperada (200 OK):
+{
+  "id": 1,
+  "nombre": "Membresia Basica",
+  "descripcion": "Acceso a areas comunes",
+  "precio": 29.99,
+  "duracion_dias": 30
+}
+
+================================================================================
+ORDEN RECOMENDADO PARA PROBAR
+================================================================================
+
+1. Verifica que Eureka este corriendo en http://localhost:8761
+2. Registra usuarios en el servicio de Autenticacion
+3. Crea socios en el servicio de Socios
+4. Crea membresias en el servicio de Membresias
+5. Obtén todos los socios y membresias para verificar que se guardaron
+
+================================================================================
+CÓDIGOS DE RESPUESTA ESPERADOS
+================================================================================
+
+200 OK: Operación exitosa
+201 Created: Recurso creado exitosamente
+400 Bad Request: Datos invalidos en el request
+404 Not Found: Recurso no encontrado
+500 Internal Server Error: Error en el servidor
+
+================================================================================
+NOTAS IMPORTANTES
+================================================================================
+
+- Las contraseñas se guardan encriptadas en la base de datos (BCrypt)
+- Los IDs se generan automáticamente (auto-increment)
+- Asegúrate que MySQL esté corriendo antes de hacer requests
+- Todos los servicios deben estar ejecutándose para que funcione correctamente
+- Si ves errores de conexión, verifica que las bases de datos existan
+- Las URLs son sensibles a mayúsculas/minúsculas
+
+================================================================================
