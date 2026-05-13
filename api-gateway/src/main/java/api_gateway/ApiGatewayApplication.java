@@ -1,4 +1,4 @@
-package cl.gimnasio.gateway.demo.gateway;
+package api_gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

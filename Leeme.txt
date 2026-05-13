@@ -1,0 +1,40 @@
+Se incorpora liquibase en producto-service para la creación de la tabla e ingreso de registros en la tabla. Revisar pom.xml, carpetas resources y config.
+Debe iniciar cada servicio a través de distintas terminales (new terminal), ingresando a la carpeta correspondiente, por ejemplo cliente-service ejecutar ./mvnw spring-boot:run
+Debe levantar todos los servicios: cliente-service, producto-service, compra-service y api-gateway
+En powershell con el comando netstat -ano|findstr :9091 puede confirmar si el proceso está corriendo en el puerto 9091.
+
+A continuación se presentan JSON para hacer las pruebas con Postman y url: http://localhost:9090, en donde los RequestMapping para los endpoints serían:
+	clientes
+	productos
+	compras
+
+========== CLIENTE ==========
+{
+  "nombre": "Orlando Villalobos",
+  "correo": "OVillalobos@duoc.cl"
+}
+
+========== PRODUCTO ==========
+Se crea la tabla e ingresan los datos utilizando LiquiBase
+
+========== COMPRA ==========
+[CASO EXITOSO]
+{
+  "idCliente": 1,
+  "idProducto": 1,
+  "cantidad": 2
+}
+
+[ERROR] CLIENTE NO EXISTE
+{
+  "idCliente": 999,
+  "idProducto": 1,
+  "cantidad": 1
+}
+
+[ERROR] PRODUCTO NO EXISTE
+{
+  "idCliente": 1,
+  "idProducto": 999,
+  "cantidad": 1
+}
