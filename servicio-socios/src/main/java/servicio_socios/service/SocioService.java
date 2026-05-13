@@ -22,7 +22,7 @@ public class SocioService {
 
         webClientBuilder.build()
                 .post()
-                .uri("http://localhost:8081/api/auth/registrar")
+                .uri("http://servicio-autenticacion:8081/api/auth/registrar")
                 .bodyValue(Map.of(
                     "username", nuevoSocio.getEmail(),
                     "password", "Socio123*",
