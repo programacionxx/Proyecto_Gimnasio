@@ -1,0 +1,221 @@
+INSTRUCCIONES PARA POSTMAN (NUEVA VERSIÓN)
+
+Headers recomendados:
+- Content-Type: application/json
+
+------------------------------------------------------------
+1. REGISTRAR USUARIO
+Método: POST
+URL: http://localhost:8081/api/auth/registrar
+Body:
+{
+  "username": "postman_nuevo@example.com",
+  "password": "Socio123*",
+  "rol": "SOCIO"
+}
+
+Respuesta esperada:
+{
+  "id": 1,
+  "username": "postman_nuevo@example.com",
+  "password": "$2a$10$...",
+  "rol": "SOCIO"
+}
+
+------------------------------------------------------------
+2. LISTAR USUARIOS
+Método: GET
+URL: http://localhost:8081/api/auth
+
+Respuesta esperada:
+[
+  { "id": 1, "username": "...", "rol": "SOCIO" }
+]
+
+------------------------------------------------------------
+3. OBTENER USUARIO POR ID
+Método: GET
+URL: http://localhost:8081/api/auth/{{usuarioId}}
+
+Respuesta esperada:
+{
+  "id": 1,
+  "username": "postman_nuevo@example.com",
+  "rol": "SOCIO"
+}
+
+------------------------------------------------------------
+4. CREAR SOCIO
+Método: POST
+URL: http://localhost:8082/api/socios
+Body:
+{
+  "nombre": "Carlos Test",
+  "email": "carlos.test@example.com"
+}
+
+Respuesta esperada:
+{
+  "id": 1,
+  "nombre": "Carlos Test",
+  "email": "carlos.test@example.com"
+}
+
+------------------------------------------------------------
+5. LISTAR SOCIOS
+Método: GET
+URL: http://localhost:8082/api/socios
+
+Respuesta esperada:
+[
+  { "id": 1, "nombre": "Carlos Test", "email": "carlos.test@example.com" }
+]
+
+------------------------------------------------------------
+6. OBTENER SOCIO POR ID
+Método: GET
+URL: http://localhost:8082/api/socios/{{socioId}}
+
+Respuesta esperada:
+{
+  "id": 1,
+  "nombre": "Carlos Test",
+  "email": "carlos.test@example.com"
+}
+
+------------------------------------------------------------
+7. ACTUALIZAR SOCIO
+Método: PUT
+URL: http://localhost:8082/api/socios/{{socioId}}
+Body:
+{
+  "nombre": "Carlos Test Actualizado",
+  "email": "carlos.actualizado@example.com"
+}
+
+Respuesta esperada:
+{
+  "id": 1,
+  "nombre": "Carlos Test Actualizado",
+  "email": "carlos.actualizado@example.com"
+}
+
+------------------------------------------------------------
+8. CREAR MEMBRESIA
+Método: POST
+URL: http://localhost:8083/api/membresias
+Body:
+{
+  "socioId": {{socioId}},
+  "tipoPlan": "BASICO",
+  "precio": 29.99
+}
+
+Respuesta esperada:
+{
+  "id": 1,
+  "socioId": 1,
+  "tipoPlan": "BASICO",
+  "precio": 29.99,
+  "fechaInicio": "2026-05-22",
+  "fechaFin": "2026-06-21",
+  "estado": "ACTIVA"
+}
+
+------------------------------------------------------------
+9. LISTAR MEMBRESIAS
+Método: GET
+URL: http://localhost:8083/api/membresias
+
+Respuesta esperada:
+[
+  {
+    "id": 1,
+    "socioId": 1,
+    "tipoPlan": "BASICO",
+    "precio": 29.99,
+    "fechaInicio": "2026-05-22",
+    "fechaFin": "2026-06-21",
+    "estado": "ACTIVA"
+  }
+]
+
+------------------------------------------------------------
+10. OBTENER MEMBRESIA POR ID
+Método: GET
+URL: http://localhost:8083/api/membresias/{{membresiaId}}
+
+Respuesta esperada:
+{
+  "id": 1,
+  "socioId": 1,
+  "tipoPlan": "BASICO",
+  "precio": 29.99,
+  "fechaInicio": "2026-05-22",
+  "fechaFin": "2026-06-21",
+  "estado": "ACTIVA"
+}
+
+------------------------------------------------------------
+11. ACTUALIZAR MEMBRESIA
+Método: PUT
+URL: http://localhost:8083/api/membresias/{{membresiaId}}
+Body:
+{
+  "socioId": {{socioId}},
+  "tipoPlan": "PREMIUM",
+  "precio": 59.99,
+  "fechaInicio": "2026-05-22",
+  "fechaFin": "2026-06-21",
+  "estado": "ACTIVA"
+}
+
+Respuesta esperada:
+{
+  "id": 1,
+  "socioId": 1,
+  "tipoPlan": "PREMIUM",
+  "precio": 59.99,
+  "fechaInicio": "2026-05-22",
+  "fechaFin": "2026-06-21",
+  "estado": "ACTIVA"
+}
+
+------------------------------------------------------------
+12. BORRAR MEMBRESIA
+Método: DELETE
+URL: http://localhost:8083/api/membresias/{{membresiaId}}
+
+Respuesta esperada:
+HTTP 200 o vacío
+
+------------------------------------------------------------
+13. BORRAR SOCIO
+Método: DELETE
+URL: http://localhost:8082/api/socios/{{socioId}}
+
+Respuesta esperada:
+HTTP 200 o vacío
+
+------------------------------------------------------------
+14. BORRAR USUARIO
+Método: DELETE
+URL: http://localhost:8081/api/auth/{{usuarioId}}
+
+Respuesta esperada:
+HTTP 200 o vacío
+
+------------------------------------------------------------
+15. PRUEBA OPCIONAL POR GATEWAY
+Método: GET
+URL: http://localhost:8084/api/socios
+
+Respuesta esperada:
+Lista de socios si el gateway está configurado correctamente.
+
+------------------------------------------------------------
+NOTAS IMPORTANTES
+- Usa el mismo socioId y membresiaId que te devuelvan las respuestas.
+- En el paso 11, si usas fechaInicio y fechaFin, asegúrate de que sean válidas para tu entorno.
+- Si alguna prueba falla, revisa que el servicio esté corriendo en el puerto correspondiente.
+- El README del proyecto está en la raíz del workspace.

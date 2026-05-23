@@ -1,12 +1,14 @@
 package cl.gimnasio.socios.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+
 import cl.gimnasio.socios.model.Socio;
 import cl.gimnasio.socios.repository.SocioRepository;
-
-import java.util.Map;
 
 @Service
 public class SocioService {
@@ -33,6 +35,29 @@ public class SocioService {
                 .block();
 
         return nuevoSocio;
+    }
+
+    public List<Socio> listarSocios() {
+        return socioRepository.findAll();
+    }
+
+    public Socio obtenerPorId(Long id) {
+        return socioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Error: Socio no encontrado."));
+    }
+
+    public Socio actualizarSocio(Long id, Socio socio) {
+        Socio actual = obtenerPorId(id);
+        actual.setNombre(socio.getNombre());
+        actual.setEmail(socio.getEmail());
+        return socioRepository.save(actual);
+    }
+
+    public void eliminarSocio(Long id) {
+        if (!socioRepository.existsById(id)) {
+            throw new RuntimeException("Error: Socio no encontrado.");
+        }
+        socioRepository.deleteById(id);
     }
 
     public boolean existePorId(Long id) {
