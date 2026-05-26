@@ -51,14 +51,18 @@ URL: http://localhost:8082/api/socios
 Body:
 {
   "nombre": "Carlos Test",
-  "email": "carlos.test@example.com"
+  "email": "carlos.test@example.com",
+  "telefono": "+56912345678",
+  "estado": "ACTIVO"
 }
 
 Respuesta esperada:
 {
   "id": 1,
   "nombre": "Carlos Test",
-  "email": "carlos.test@example.com"
+  "email": "carlos.test@example.com",
+  "telefono": "+56912345678",
+  "estado": "ACTIVO"
 }
 
 ------------------------------------------------------------
@@ -68,7 +72,13 @@ URL: http://localhost:8082/api/socios
 
 Respuesta esperada:
 [
-  { "id": 1, "nombre": "Carlos Test", "email": "carlos.test@example.com" }
+  {
+    "id": 1,
+    "nombre": "Carlos Test",
+    "email": "carlos.test@example.com",
+    "telefono": "+56912345678",
+    "estado": "ACTIVO"
+  }
 ]
 
 ------------------------------------------------------------
@@ -80,7 +90,9 @@ Respuesta esperada:
 {
   "id": 1,
   "nombre": "Carlos Test",
-  "email": "carlos.test@example.com"
+  "email": "carlos.test@example.com",
+  "telefono": "+56912345678",
+  "estado": "ACTIVO"
 }
 
 ------------------------------------------------------------
@@ -90,14 +102,18 @@ URL: http://localhost:8082/api/socios/{{socioId}}
 Body:
 {
   "nombre": "Carlos Test Actualizado",
-  "email": "carlos.actualizado@example.com"
+  "email": "carlos.actualizado@example.com",
+  "telefono": "+56987654321",
+  "estado": "INACTIVO"
 }
 
 Respuesta esperada:
 {
   "id": 1,
   "nombre": "Carlos Test Actualizado",
-  "email": "carlos.actualizado@example.com"
+  "email": "carlos.actualizado@example.com",
+  "telefono": "+56987654321",
+  "estado": "INACTIVO"
 }
 
 ------------------------------------------------------------

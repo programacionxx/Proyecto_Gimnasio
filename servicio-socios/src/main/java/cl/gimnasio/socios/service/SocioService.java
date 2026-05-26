@@ -50,6 +50,8 @@ public class SocioService {
         Socio actual = obtenerPorId(id);
         actual.setNombre(socio.getNombre());
         actual.setEmail(socio.getEmail());
+        actual.setTelefono(socio.getTelefono());
+        actual.setEstado(socio.getEstado());
         return socioRepository.save(actual);
     }
 

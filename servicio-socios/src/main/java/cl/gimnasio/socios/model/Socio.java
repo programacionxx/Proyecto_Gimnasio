@@ -1,6 +1,10 @@
 package cl.gimnasio.socios.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
@@ -14,4 +18,6 @@ public class Socio {
 
     private String nombre;
     private String email;
+    private String telefono;
+    private String estado;
 }
