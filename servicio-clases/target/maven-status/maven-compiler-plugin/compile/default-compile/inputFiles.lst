@@ -1,0 +1,10 @@
+D:\Java\Proyecto_Gimnasio\servicio-clases\src\main\java\cl\gimnasio\clases\config\OpenApiConfig.java
+D:\Java\Proyecto_Gimnasio\servicio-clases\src\main\java\cl\gimnasio\clases\controller\ClaseController.java
+D:\Java\Proyecto_Gimnasio\servicio-clases\src\main\java\cl\gimnasio\clases\entity\Clase.java
+D:\Java\Proyecto_Gimnasio\servicio-clases\src\main\java\cl\gimnasio\clases\exception\ApiError.java
+D:\Java\Proyecto_Gimnasio\servicio-clases\src\main\java\cl\gimnasio\clases\exception\GlobalExceptionHandler.java
+D:\Java\Proyecto_Gimnasio\servicio-clases\src\main\java\cl\gimnasio\clases\exception\ResourceNotFoundException.java
+D:\Java\Proyecto_Gimnasio\servicio-clases\src\main\java\cl\gimnasio\clases\model\ClaseRequest.java
+D:\Java\Proyecto_Gimnasio\servicio-clases\src\main\java\cl\gimnasio\clases\repository\ClaseRepository.java
+D:\Java\Proyecto_Gimnasio\servicio-clases\src\main\java\cl\gimnasio\clases\service\ClaseService.java
+D:\Java\Proyecto_Gimnasio\servicio-clases\src\main\java\cl\gimnasio\clases\ServicioClasesApplication.java

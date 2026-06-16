@@ -1,0 +1,12 @@
+cl\gimnasio\asistencia\exception\ResourceNotFoundException.class
+cl\gimnasio\asistencia\model\AsistenciaRequest.class
+cl\gimnasio\asistencia\exception\GlobalExceptionHandler.class
+cl\gimnasio\asistencia\config\OpenApiConfig.class
+cl\gimnasio\asistencia\repository\AsistenciaRepository.class
+cl\gimnasio\asistencia\exception\ApiError.class
+cl\gimnasio\asistencia\entity\Asistencia.class
+cl\gimnasio\asistencia\controller\AsistenciaController.class
+cl\gimnasio\asistencia\entity\Asistencia$AsistenciaBuilder.class
+cl\gimnasio\asistencia\service\AsistenciaService.class
+cl\gimnasio\asistencia\ServicioAsistenciaApplication.class
+cl\gimnasio\asistencia\model\AsistenciaRequest$AsistenciaRequestBuilder.class

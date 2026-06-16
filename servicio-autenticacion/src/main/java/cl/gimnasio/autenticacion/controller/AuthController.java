@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.gimnasio.autenticacion.model.Usuario;
+import cl.gimnasio.autenticacion.entity.Usuario;
 import cl.gimnasio.autenticacion.service.AuthService;
 
 @RestController

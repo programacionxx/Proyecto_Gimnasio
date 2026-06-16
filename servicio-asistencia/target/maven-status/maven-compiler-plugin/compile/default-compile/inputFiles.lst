@@ -1,0 +1,10 @@
+D:\Java\Proyecto_Gimnasio\servicio-asistencia\src\main\java\cl\gimnasio\asistencia\config\OpenApiConfig.java
+D:\Java\Proyecto_Gimnasio\servicio-asistencia\src\main\java\cl\gimnasio\asistencia\controller\AsistenciaController.java
+D:\Java\Proyecto_Gimnasio\servicio-asistencia\src\main\java\cl\gimnasio\asistencia\entity\Asistencia.java
+D:\Java\Proyecto_Gimnasio\servicio-asistencia\src\main\java\cl\gimnasio\asistencia\exception\ApiError.java
+D:\Java\Proyecto_Gimnasio\servicio-asistencia\src\main\java\cl\gimnasio\asistencia\exception\GlobalExceptionHandler.java
+D:\Java\Proyecto_Gimnasio\servicio-asistencia\src\main\java\cl\gimnasio\asistencia\exception\ResourceNotFoundException.java
+D:\Java\Proyecto_Gimnasio\servicio-asistencia\src\main\java\cl\gimnasio\asistencia\model\AsistenciaRequest.java
+D:\Java\Proyecto_Gimnasio\servicio-asistencia\src\main\java\cl\gimnasio\asistencia\repository\AsistenciaRepository.java
+D:\Java\Proyecto_Gimnasio\servicio-asistencia\src\main\java\cl\gimnasio\asistencia\service\AsistenciaService.java
+D:\Java\Proyecto_Gimnasio\servicio-asistencia\src\main\java\cl\gimnasio\asistencia\ServicioAsistenciaApplication.java

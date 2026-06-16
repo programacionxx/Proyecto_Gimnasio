@@ -1,0 +1,12 @@
+cl\gimnasio\clases\entity\Clase.class
+cl\gimnasio\clases\service\ClaseService.class
+cl\gimnasio\clases\model\ClaseRequest$ClaseRequestBuilder.class
+cl\gimnasio\clases\exception\ResourceNotFoundException.class
+cl\gimnasio\clases\entity\Clase$ClaseBuilder.class
+cl\gimnasio\clases\controller\ClaseController.class
+cl\gimnasio\clases\config\OpenApiConfig.class
+cl\gimnasio\clases\ServicioClasesApplication.class
+cl\gimnasio\clases\model\ClaseRequest.class
+cl\gimnasio\clases\exception\ApiError.class
+cl\gimnasio\clases\repository\ClaseRepository.class
+cl\gimnasio\clases\exception\GlobalExceptionHandler.class

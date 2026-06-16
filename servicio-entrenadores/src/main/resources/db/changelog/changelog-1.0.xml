@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd">
+
+    <changeSet id="1" author="architect">
+        <createTable tableName="entrenadores">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="apellido" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="especialidad" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="correo" type="VARCHAR(200)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="telefono" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="insert-data-entrenadores" author="programacionxx">
+        <insert tableName="entrenadores">
+            <column name="nombre" value="Carlos"/>
+            <column name="apellido" value="Diaz"/>
+            <column name="especialidad" value="Musculación"/>
+            <column name="correo" value="carlos.diaz@example.com"/>
+            <column name="telefono" value="+56911223344"/>
+        </insert>
+        <insert tableName="entrenadores">
+            <column name="nombre" value="Ana"/>
+            <column name="apellido" value="López"/>
+            <column name="especialidad" value="Yoga"/>
+            <column name="correo" value="ana.lopez@example.com"/>
+            <column name="telefono" value="+56922334455"/>
+        </insert>
+        <insert tableName="entrenadores">
+            <column name="nombre" value="Jorge"/>
+            <column name="apellido" value="Fuentes"/>
+            <column name="especialidad" value="Crossfit"/>
+            <column name="correo" value="jorge.fuentes@example.com"/>
+            <column name="telefono" value="+56933445566"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

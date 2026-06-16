@@ -1,0 +1,10 @@
+cl\gimnasio\entrenadores\entity\Entrenador$EntrenadorBuilder.class
+cl\gimnasio\entrenadores\controller\EntrenadorController.class
+cl\gimnasio\entrenadores\exception\ResourceNotFoundException.class
+cl\gimnasio\entrenadores\service\EntrenadorService.class
+cl\gimnasio\entrenadores\exception\GlobalExceptionHandler.class
+cl\gimnasio\entrenadores\config\OpenApiConfig.class
+cl\gimnasio\entrenadores\ServicioEntrenadoresApplication.class
+cl\gimnasio\entrenadores\repository\EntrenadorRepository.class
+cl\gimnasio\entrenadores\exception\ApiError.class
+cl\gimnasio\entrenadores\entity\Entrenador.class

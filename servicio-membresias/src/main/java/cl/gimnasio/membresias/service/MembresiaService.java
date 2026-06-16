@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
-import cl.gimnasio.membresias.model.Membresia;
+import cl.gimnasio.membresias.entity.Membresia;
+import cl.gimnasio.membresias.exception.ResourceNotFoundException;
 import cl.gimnasio.membresias.repository.MembresiaRepository;
 
 @Service
@@ -49,7 +50,7 @@ public class MembresiaService {
 
     public Membresia obtenerPorId(Long id) {
         return membresiaRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Error: Membresía no encontrada."));
+            .orElseThrow(() -> new ResourceNotFoundException("Error: Membresía no encontrada."));
     }
 
     public Membresia actualizarMembresia(Long id, Membresia membresia) {
@@ -65,7 +66,7 @@ public class MembresiaService {
 
     public void eliminarMembresia(Long id) {
         if (!membresiaRepository.existsById(id)) {
-            throw new RuntimeException("Error: Membresía no encontrada.");
+            throw new ResourceNotFoundException("Error: Membresía no encontrada.");
         }
         membresiaRepository.deleteById(id);
     }

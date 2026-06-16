@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd">
+
+    <changeSet id="1" author="architect">
+        <createTable tableName="clases">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descripcion" type="VARCHAR(500)"/>
+            <column name="horario" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="capacidad_maxima" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duracion" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="entrenador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="insert-data-clases" author="programacionxx">
+        <insert tableName="clases">
+            <column name="nombre" value="Spinning"/>
+            <column name="descripcion" value="Clase de ciclismo indoor para mejorar resistencia."/>
+            <column name="horario" value="2026-07-01 10:00:00"/>
+            <column name="capacidad_maxima" valueNumeric="20"/>
+            <column name="duracion" valueNumeric="60"/>
+            <column name="entrenador_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="clases">
+            <column name="nombre" value="Yoga"/>
+            <column name="descripcion" value="Sesión de Yoga para flexibilidad y relajación."/>
+            <column name="horario" value="2026-07-01 12:00:00"/>
+            <column name="capacidad_maxima" valueNumeric="15"/>
+            <column name="duracion" valueNumeric="45"/>
+            <column name="entrenador_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="clases">
+            <column name="nombre" value="Crossfit"/>
+            <column name="descripcion" value="Entrenamiento funcional de alta intensidad."/>
+            <column name="horario" value="2026-07-01 18:00:00"/>
+            <column name="capacidad_maxima" valueNumeric="18"/>
+            <column name="duracion" valueNumeric="50"/>
+            <column name="entrenador_id" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

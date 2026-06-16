@@ -1,6 +1,4 @@
-﻿version: '3.8'
-
-services:
+﻿services:
   db:
     image: mysql:8.0
     container_name: mysql_db
@@ -58,6 +56,71 @@ services:
       - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
   
+  servicio-pagos:
+    build: ./servicio-pagos
+    container_name: servicio-pagos
+    ports:
+      - "8085:8085"
+    depends_on:
+      - db
+      - servidor-eureka
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_pagos?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-clases:
+    build: ./servicio-clases
+    container_name: servicio-clases
+    ports:
+      - "8086:8086"
+    depends_on:
+      - db
+      - servidor-eureka
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_clases?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-reservas:
+    build: ./servicio-reservas
+    container_name: servicio-reservas
+    ports:
+      - "8087:8087"
+    depends_on:
+      - db
+      - servidor-eureka
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_reservas?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-asistencia:
+    build: ./servicio-asistencia
+    container_name: servicio-asistencia
+    ports:
+      - "8090:8090"
+    depends_on:
+      - db
+      - servidor-eureka
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_asistencia?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-entrenadores:
+    build: ./servicio-entrenadores
+    container_name: servicio-entrenadores
+    ports:
+      - "8088:8088"
+    depends_on:
+      - db
+      - servidor-eureka
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_entrenadores?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
   servidor-eureka:
     build: ./servidor-eureka
     container_name: servidor-eureka

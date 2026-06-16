@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import cl.gimnasio.socios.model.Socio;
+import cl.gimnasio.socios.entity.Socio;
+import cl.gimnasio.socios.exception.ResourceNotFoundException;
 import cl.gimnasio.socios.repository.SocioRepository;
 
 @Service
@@ -43,7 +44,7 @@ public class SocioService {
 
     public Socio obtenerPorId(Long id) {
         return socioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Error: Socio no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Error: Socio no encontrado."));
     }
 
     public Socio actualizarSocio(Long id, Socio socio) {
@@ -57,7 +58,7 @@ public class SocioService {
 
     public void eliminarSocio(Long id) {
         if (!socioRepository.existsById(id)) {
-            throw new RuntimeException("Error: Socio no encontrado.");
+            throw new ResourceNotFoundException("Error: Socio no encontrado.");
         }
         socioRepository.deleteById(id);
     }

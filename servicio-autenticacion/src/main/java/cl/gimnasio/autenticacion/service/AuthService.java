@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import cl.gimnasio.autenticacion.model.Usuario;
+import cl.gimnasio.autenticacion.entity.Usuario;
+import cl.gimnasio.autenticacion.exception.ResourceNotFoundException;
 import cl.gimnasio.autenticacion.repository.UsuarioRepository;
 
 @Service
@@ -29,12 +30,12 @@ public class AuthService {
 
     public Usuario obtenerPorId(Long id) {
         return usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Error: Usuario no encontrado."));
+                .orElseThrow(() -> new ResourceNotFoundException("Error: Usuario no encontrado."));
     }
 
     public void eliminarUsuario(Long id) {
         if (!usuarioRepository.existsById(id)) {
-            throw new RuntimeException("Error: Usuario no encontrado.");
+            throw new ResourceNotFoundException("Error: Usuario no encontrado.");
         }
         usuarioRepository.deleteById(id);
     }

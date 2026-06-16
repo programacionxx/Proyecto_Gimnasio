@@ -1,0 +1,200 @@
+POSTMAN TEST PLAN - PROYECTO GIMNASIO
+
+Headers comunes:
+- Content-Type: application/json
+
+Ajusta los puertos según tu configuración local o Docker.
+
+ENVIRONMENT VARIABLES SUGERIDOS:
+- auth_base = http://localhost:8081
+- socios_base = http://localhost:8082
+- membresias_base = http://localhost:8083
+- clases_base = http://localhost:8084
+- pagos_base = http://localhost:8085
+- entrenadores_base = http://localhost:8086
+
+------------------------------------------------------------
+1. AUTENTICACIÓN - REGISTRAR USUARIO
+Método: POST
+URL: {{auth_base}}/api/auth/registrar
+Body:
+{
+  "username": "postman_user@example.com",
+  "password": "Socio123*",
+  "rol": "SOCIO"
+}
+
+------------------------------------------------------------
+2. AUTENTICACIÓN - LISTAR USUARIOS
+Método: GET
+URL: {{auth_base}}/api/auth
+
+------------------------------------------------------------
+3. AUTENTICACIÓN - OBTENER USUARIO POR ID
+Método: GET
+URL: {{auth_base}}/api/auth/{{usuarioId}}
+
+------------------------------------------------------------
+4. SOCIOS - CREAR SOCIO
+Método: POST
+URL: {{socios_base}}/api/socios
+Body:
+{
+  "nombre": "Carlos Test",
+  "email": "carlos.test@example.com",
+  "telefono": "+56912345678",
+  "estado": "ACTIVO"
+}
+
+------------------------------------------------------------
+5. SOCIOS - LISTAR SOCIOS
+Método: GET
+URL: {{socios_base}}/api/socios
+
+------------------------------------------------------------
+6. SOCIOS - OBTENER SOCIO POR ID
+Método: GET
+URL: {{socios_base}}/api/socios/{{socioId}}
+
+------------------------------------------------------------
+7. SOCIOS - ACTUALIZAR SOCIO
+Método: PUT
+URL: {{socios_base}}/api/socios/{{socioId}}
+Body:
+{
+  "nombre": "Carlos Test Actualizado",
+  "email": "carlos.actualizado@example.com",
+  "telefono": "+56987654321",
+  "estado": "INACTIVO"
+}
+
+------------------------------------------------------------
+8. MEMBRESÍAS - CREAR MEMBRESÍA
+Método: POST
+URL: {{membresias_base}}/api/membresias
+Body:
+{
+  "socioId": {{socioId}},
+  "tipoPlan": "BASICO",
+  "precio": 29.99
+}
+
+------------------------------------------------------------
+9. MEMBRESÍAS - LISTAR MEMBRESÍAS
+Método: GET
+URL: {{membresias_base}}/api/membresias
+
+------------------------------------------------------------
+10. MEMBRESÍAS - OBTENER MEMBRESÍA POR ID
+Método: GET
+URL: {{membresias_base}}/api/membresias/{{membresiaId}}
+
+------------------------------------------------------------
+11. CLASES - CREAR CLASE
+Método: POST
+URL: {{clases_base}}/api/clases
+Body:
+{
+  "nombre": "Spinning",
+  "descripcion": "Entrenamiento cardiovascular en bicicleta",
+  "horario": "2026-06-10T18:00:00",
+  "capacidadMaxima": 10,
+  "duracion": 60,
+  "entrenadorId": 1
+}
+
+------------------------------------------------------------
+12. CLASES - LISTAR CLASES
+Método: GET
+URL: {{clases_base}}/api/clases
+
+------------------------------------------------------------
+13. CLASES - OBTENER CLASE POR ID
+Método: GET
+URL: {{clases_base}}/api/clases/{{claseId}}
+
+------------------------------------------------------------
+14. CLASES - ACTUALIZAR CLASE
+Método: PUT
+URL: {{clases_base}}/api/clases/{{claseId}}
+Body:
+{
+  "nombre": "Spinning Avanzado",
+  "descripcion": "Sesión intensiva de bicicleta",
+  "entrenadorId": 1,
+  "capacidad": 12,
+  "horario": "2026-06-10T19:00:00"
+}
+
+------------------------------------------------------------
+15. PAGOS - CREAR PAGO
+Método: POST
+URL: {{pagos_base}}/api/pagos
+Body:
+{
+  "socioId": {{socioId}},
+  "monto": 50.00,
+  "metodoPago": "TARJETA"
+}
+
+------------------------------------------------------------
+16. PAGOS - LISTAR PAGOS
+Método: GET
+URL: {{pagos_base}}/api/pagos
+
+------------------------------------------------------------
+17. PAGOS - OBTENER PAGO POR ID
+Método: GET
+URL: {{pagos_base}}/api/pagos/{{pagoId}}
+
+------------------------------------------------------------
+18. PAGOS - LISTAR PAGOS POR SOCIO
+Método: GET
+URL: {{pagos_base}}/api/pagos/socio/{{socioId}}
+
+------------------------------------------------------------
+19. ENTRENADORES - CREAR ENTRENADOR
+Método: POST
+URL: {{entrenadores_base}}/api/entrenadores
+Body:
+{
+  "nombre": "Alex Martínez",
+  "apellido": "González",
+  "especialidad": "Crossfit",
+  "correo": "alex.martinez@example.com",
+  "telefono": "+56911223344"
+}
+
+------------------------------------------------------------
+20. ENTRENADORES - LISTAR ENTRENADORES
+Método: GET
+URL: {{entrenadores_base}}/api/entrenadores
+
+------------------------------------------------------------
+21. ENTRENADORES - OBTENER ENTRENADOR POR ID
+Método: GET
+URL: {{entrenadores_base}}/api/entrenadores/{{entrenadorId}}
+
+------------------------------------------------------------
+22. ENTRENADORES - ACTUALIZAR ENTRENADOR
+Método: PUT
+URL: {{entrenadores_base}}/api/entrenadores/{{entrenadorId}}
+Body:
+{
+  "nombre": "Alex Martínez",
+  "apellido": "González",
+  "especialidad": "Funcional",
+  "correo": "alex.funcional@example.com",
+  "telefono": "+56999887766"
+}
+
+------------------------------------------------------------
+23. ENTRENADORES - ELIMINAR ENTRENADOR
+Método: DELETE
+URL: {{entrenadores_base}}/api/entrenadores/{{entrenadorId}}
+
+------------------------------------------------------------
+NOTAS:
+- Ajusta los IDs generados con los resultados de cada solicitud.
+- Si algún servicio usa un puerto distinto, actualiza la variable correspondiente.
+- Para pruebas de Swagger, accede a: http://localhost:{puerto}/swagger-ui/index.html
