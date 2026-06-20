@@ -15,6 +15,7 @@ import cl.gimnasio.autenticacion.entity.Usuario;
 import cl.gimnasio.autenticacion.service.AuthService;
 
 @RestController
+
 @RequestMapping("/api/auth")
 public class AuthController {
 
@@ -40,4 +41,6 @@ public class AuthController {
     public void eliminarUsuario(@PathVariable Long id) {
         authService.eliminarUsuario(id);
     }
+
+    
 }
