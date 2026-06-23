@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd">
+    <changeSet id="initial-setup" author="arquitecto">
+        <createTable tableName="inventario">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="producto" type="VARCHAR(255)"/>
+            <column name="cantidad" type="INT"/>
+            <column name="ubicacion" type="VARCHAR(255)"/>
+            <column name="estado" type="VARCHAR(255)"/>
+            <column name="descripcion" type="VARCHAR(500)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="insert-data-inventario" author="programacionxx">
+        <insert tableName="inventario">
+            <column name="producto" value="Proteína Whey"/>
+            <column name="cantidad" valueNumeric="120"/>
+            <column name="ubicacion" value="Bodega A"/>
+            <column name="estado" value="DISPONIBLE"/>
+            <column name="descripcion" value="Suplemento proteico de 2 kg"/>
+        </insert>
+        <insert tableName="inventario">
+            <column name="producto" value="Guantes de boxeo"/>
+            <column name="cantidad" valueNumeric="45"/>
+            <column name="ubicacion" value="Estantería 3"/>
+            <column name="estado" value="DISPONIBLE"/>
+            <column name="descripcion" value="Guantes negros talla M"/>
+        </insert>
+        <insert tableName="inventario">
+            <column name="producto" value="Colchoneta de yoga"/>
+            <column name="cantidad" valueNumeric="30"/>
+            <column name="ubicacion" value="Estantería 1"/>
+            <column name="estado" value="DISPONIBLE"/>
+            <column name="descripcion" value="Colchoneta antideslizante azul"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

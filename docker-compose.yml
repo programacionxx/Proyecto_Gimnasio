@@ -121,6 +121,32 @@
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
 
+  servicio-inventario:
+    build: ./servicio-inventario
+    container_name: servicio-inventario
+    ports:
+      - "8089:8089"
+    depends_on:
+      - db
+      - servidor-eureka
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_inventario?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-notificaciones:
+    build: ./servicio-notificaciones
+    container_name: servicio-notificaciones
+    ports:
+      - "8091:8091"
+    depends_on:
+      - db
+      - servidor-eureka
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_notificaciones?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
   servidor-eureka:
     build: ./servidor-eureka
     container_name: servidor-eureka

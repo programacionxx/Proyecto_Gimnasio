@@ -1,0 +1,9 @@
+cl\gimnasio\notificaciones\service\NotificacionService.class
+cl\gimnasio\notificaciones\controller\NotificacionController.class
+cl\gimnasio\notificaciones\exception\GlobalExceptionHandler.class
+cl\gimnasio\notificaciones\entity\Notificacion.class
+cl\gimnasio\notificaciones\ServicioNotificacionesApplication.class
+cl\gimnasio\notificaciones\exception\ResourceNotFoundException.class
+cl\gimnasio\notificaciones\exception\ApiError.class
+cl\gimnasio\notificaciones\repository\NotificacionRepository.class
+cl\gimnasio\notificaciones\config\OpenApiConfig.class

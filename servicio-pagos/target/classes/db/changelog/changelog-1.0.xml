@@ -30,7 +30,7 @@
     <changeSet id="insert-data-pagos" author="programacionxx">
         <insert tableName="pagos">
             <column name="socio_id" valueNumeric="1"/>
-            <column name="monto" valueNumeric="29.99"/>
+            <column name="monto" valueNumeric="29.990"/>
             <column name="fecha_pago" value="2026-06-01 09:00:00"/>
             <column name="metodo_pago" value="Tarjeta"/>
             <column name="estado_pago" value="COMPLETADO"/>
@@ -38,7 +38,7 @@
         </insert>
         <insert tableName="pagos">
             <column name="socio_id" valueNumeric="2"/>
-            <column name="monto" valueNumeric="49.99"/>
+            <column name="monto" valueNumeric="49.990"/>
             <column name="fecha_pago" value="2026-06-02 09:30:00"/>
             <column name="metodo_pago" value="Tarjeta"/>
             <column name="estado_pago" value="COMPLETADO"/>
@@ -46,7 +46,7 @@
         </insert>
         <insert tableName="pagos">
             <column name="socio_id" valueNumeric="3"/>
-            <column name="monto" valueNumeric="79.99"/>
+            <column name="monto" valueNumeric="79.990"/>
             <column name="fecha_pago" value="2026-06-03 10:00:00"/>
             <column name="metodo_pago" value="Tarjeta"/>
             <column name="estado_pago" value="COMPLETADO"/>

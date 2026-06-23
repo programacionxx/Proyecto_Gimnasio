@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cl.gimnasio.pagos.entity.Pago;
 import cl.gimnasio.pagos.model.PagoRequest;
 import cl.gimnasio.pagos.service.PagoService;
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -41,6 +42,7 @@ public class PagoController {
         return ResponseEntity.ok(pagoService.getPagoById(id));
     }
 
+    @Hidden
     @GetMapping("/socio/{socioId}")
     public ResponseEntity<List<Pago>> getPagosBySocioId(@PathVariable Long socioId) {
         return ResponseEntity.ok(pagoService.getPagosBySocioId(socioId));

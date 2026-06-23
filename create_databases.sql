@@ -6,6 +6,10 @@ CREATE DATABASE IF NOT EXISTS db_gimnasio_pagos CHARACTER SET utf8mb4 COLLATE ut
 CREATE DATABASE IF NOT EXISTS db_gimnasio_clases CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 CREATE DATABASE IF NOT EXISTS db_gimnasio_reservas CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 CREATE DATABASE IF NOT EXISTS db_gimnasio_entrenadores CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS db_gimnasio_notificaciones CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS db_gimnasio_inventario CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+
 
 -- Usuario y permisos de ejemplo (ajustar credenciales según entorno)
 CREATE USER IF NOT EXISTS 'gimnasio'@'%' IDENTIFIED BY 'gimnasio123';

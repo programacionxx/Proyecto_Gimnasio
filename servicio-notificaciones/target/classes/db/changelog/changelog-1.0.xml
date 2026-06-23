@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd">
+    <changeSet id="initial-setup" author="arquitecto">
+        <createTable tableName="notificaciones">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="socio_id" type="BIGINT"/>
+            <column name="tipo" type="VARCHAR(255)"/>
+            <column name="estado" type="VARCHAR(255)"/>
+            <column name="mensaje" type="VARCHAR(500)"/>
+            <column name="fecha_envio" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="insert-data-notificaciones" author="programacionxx">
+        <insert tableName="notificaciones">
+            <column name="socio_id" valueNumeric="1"/>
+            <column name="tipo" value="PAGO"/>
+            <column name="estado" value="ENVIADA"/>
+            <column name="mensaje" value="Su pago de membresía fue recibido correctamente."/>
+            <column name="fecha_envio" valueDate="2026-06-23T10:00:00"/>
+        </insert>
+        <insert tableName="notificaciones">
+            <column name="socio_id" valueNumeric="2"/>
+            <column name="tipo" value="RESERVA"/>
+            <column name="estado" value="PENDIENTE"/>
+            <column name="mensaje" value="Su reserva para la clase de yoga está confirmada."/>
+            <column name="fecha_envio" valueDate="2026-06-23T12:30:00"/>
+        </insert>
+        <insert tableName="notificaciones">
+            <column name="socio_id" valueNumeric="3"/>
+            <column name="tipo" value="ALERTA"/>
+            <column name="estado" value="ENVIADA"/>
+            <column name="mensaje" value="Recordatorio: su clase de pilates comienza en 1 hora."/>
+            <column name="fecha_envio" valueDate="2026-06-23T15:00:00"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
