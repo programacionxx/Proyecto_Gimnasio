@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd">
+    <changeSet id="initial-setup" author="arquitecto">
+        <createTable tableName="socios">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(255)">
+                
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="telefono" type="VARCHAR(255)"/>
+            <column name="estado" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="insert-data-socios" author="programacionxx">
+        <insert tableName="socios">
+            <column name="nombre" value="Juan Perez"/>
+            <column name="email" value="juan.perez@example.com"/>
+            <column name="telefono" value="+56912345678"/>
+            <column name="estado" value="ACTIVO"/>
+        </insert>
+        <insert tableName="socios">
+            <column name="nombre" value="Maria Soto"/>
+            <column name="email" value="maria.soto@example.com"/>
+            <column name="telefono" value="+56987654321"/>
+            <column name="estado" value="ACTIVO"/>
+        </insert>
+        <insert tableName="socios">
+            <column name="nombre" value="Pedro Gonzalez"/>
+            <column name="email" value="pedro.gonzalez@example.com"/>
+            <column name="telefono" value="+56923456789"/>
+            <column name="estado" value="ACTIVO"/>
+        </insert>
+        <insert tableName="socios">
+            <column name="nombre" value="Ana Rojas"/>
+            <column name="email" value="ana.rojas@example.com"/>
+            <column name="telefono" value="+56934567890"/>
+            <column name="estado" value="ACTIVO"/>
+        </insert>
+        <insert tableName="socios">
+            <column name="nombre" value="Camila Diaz"/>
+            <column name="email" value="camila.diaz@example.com"/>
+            <column name="telefono" value="+56945678901"/>
+            <column name="estado" value="ACTIVO"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

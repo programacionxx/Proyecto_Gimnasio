@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd">
+    <changeSet id="initial-setup" author="arquitecto">
+        <createTable tableName="membresias">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="socio_id" type="BIGINT"/>
+            <column name="tipo_plan" type="VARCHAR(255)"/>
+            <column name="fecha_inicio" type="DATE"/>
+            <column name="fecha_fin" type="DATE"/>
+            <column name="precio" type="DECIMAL(15,2)"/>
+            <column name="estado" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="insert-data-membresias" author="programacionxx">
+        <insert tableName="membresias">
+            <column name="socio_id" valueNumeric="1"/>
+            <column name="tipo_plan" value="BASICA"/>
+            <column name="fecha_inicio" value="2026-01-01"/>
+            <column name="fecha_fin" value="2026-12-31"/>
+            <column name="precio" valueNumeric="29.99"/>
+            <column name="estado" value="ACTIVA"/>
+        </insert>
+        <insert tableName="membresias">
+            <column name="socio_id" valueNumeric="2"/>
+            <column name="tipo_plan" value="PREMIUM"/>
+            <column name="fecha_inicio" value="2026-01-01"/>
+            <column name="fecha_fin" value="2026-12-31"/>
+            <column name="precio" valueNumeric="49.99"/>
+            <column name="estado" value="ACTIVA"/>
+        </insert>
+        <insert tableName="membresias">
+            <column name="socio_id" valueNumeric="3"/>
+            <column name="tipo_plan" value="VIP"/>
+            <column name="fecha_inicio" value="2026-01-01"/>
+            <column name="fecha_fin" value="2026-12-31"/>
+            <column name="precio" valueNumeric="79.99"/>
+            <column name="estado" value="ACTIVA"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

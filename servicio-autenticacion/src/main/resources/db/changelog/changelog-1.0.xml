@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd">
+    <changeSet id="initial-setup" author="arquitecto">
+        <createTable tableName="usuarios">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="rol" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="insert-data-usuarios" author="programacionxx">
+        <insert tableName="usuarios">
+            <column name="username" value="admin"/>
+            <column name="password" value="admin123"/>
+            <column name="rol" value="ADMIN"/>
+        </insert>
+        <insert tableName="usuarios">
+            <column name="username" value="recepcion"/>
+            <column name="password" value="recepcion123"/>
+            <column name="rol" value="RECEPCION"/>
+        </insert>
+        <insert tableName="usuarios">
+            <column name="username" value="entrenador"/>
+            <column name="password" value="entrenador123"/>
+            <column name="rol" value="ENTRENADOR"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

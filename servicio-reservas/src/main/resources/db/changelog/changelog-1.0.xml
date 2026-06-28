@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd">
+
+    <changeSet id="1" author="architect">
+        <createTable tableName="reservas">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="socio_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="clase_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fecha_reserva" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estado" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="insert-data-reservas" author="programacionxx">
+        <insert tableName="reservas">
+            <column name="socio_id" valueNumeric="1"/>
+            <column name="clase_id" valueNumeric="1"/>
+            <column name="fecha_reserva" value="2026-07-01 10:00:00"/>
+            <column name="estado" value="CONFIRMADA"/>
+        </insert>
+        <insert tableName="reservas">
+            <column name="socio_id" valueNumeric="2"/>
+            <column name="clase_id" valueNumeric="2"/>
+            <column name="fecha_reserva" value="2026-07-01 12:00:00"/>
+            <column name="estado" value="CONFIRMADA"/>
+        </insert>
+        <insert tableName="reservas">
+            <column name="socio_id" valueNumeric="3"/>
+            <column name="clase_id" valueNumeric="3"/>
+            <column name="fecha_reserva" value="2026-07-01 18:00:00"/>
+            <column name="estado" value="CONFIRMADA"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

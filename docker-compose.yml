@@ -1,0 +1,187 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: usuario_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - db_gimnasio:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+
+  servicio-autenticacion:
+    build: ./servicio-autenticacion
+    container_name: servicio-autenticacion
+    ports:
+      - "8081:8081"
+    depends_on:
+      db:
+        condition: service_healthy
+      servidor-eureka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_auth?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-membresias:
+    build: ./servicio-membresias
+    container_name: servicio-membresias
+    ports:
+      - "8083:8083"
+    depends_on:
+      db:
+        condition: service_healthy
+      servidor-eureka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_membresias?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-socios:
+    build: ./servicio-socios
+    container_name: servicio-socios
+    ports:
+      - "8082:8082"
+    depends_on:
+      db:
+        condition: service_healthy
+      servidor-eureka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_socios?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  
+  servicio-pagos:
+    build: ./servicio-pagos
+    container_name: servicio-pagos
+    ports:
+      - "8085:8085"
+    depends_on:
+      db:
+        condition: service_healthy
+      servidor-eureka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_pagos?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-clases:
+    build: ./servicio-clases
+    container_name: servicio-clases
+    ports:
+      - "8086:8086"
+    depends_on:
+      db:
+        condition: service_healthy
+      servidor-eureka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_clases?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-reservas:
+    build: ./servicio-reservas
+    container_name: servicio-reservas
+    ports:
+      - "8087:8087"
+    depends_on:
+      db:
+        condition: service_healthy
+      servidor-eureka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_reservas?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-asistencia:
+    build: ./servicio-asistencia
+    container_name: servicio-asistencia
+    ports:
+      - "8090:8090"
+    depends_on:
+      db:
+        condition: service_healthy
+      servidor-eureka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_asistencia?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-entrenadores:
+    build: ./servicio-entrenadores
+    container_name: servicio-entrenadores
+    ports:
+      - "8088:8088"
+    depends_on:
+      db:
+        condition: service_healthy
+      servidor-eureka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_entrenadores?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-inventario:
+    build: ./servicio-inventario
+    container_name: servicio-inventario
+    ports:
+      - "8089:8089"
+    depends_on:
+      db:
+        condition: service_healthy
+      servidor-eureka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_inventario?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servicio-notificaciones:
+    build: ./servicio-notificaciones
+    container_name: servicio-notificaciones
+    ports:
+      - "8091:8091"
+    depends_on:
+      db:
+        condition: service_healthy
+      servidor-eureka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/db_gimnasio_notificaciones?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  servidor-eureka:
+    build: ./servidor-eureka
+    container_name: servidor-eureka
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8084:8084"
+    depends_on:
+      servidor-eureka:
+        condition: service_started
+
+volumes:
+  db_gimnasio:
+    driver: local
