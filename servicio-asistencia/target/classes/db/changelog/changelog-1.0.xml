@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd">
+
+    <changeSet id="1" author="architect">
+        <createTable tableName="asistencias">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="socio_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fecha" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="presente" type="TINYINT(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="insert-data-asistencias" author="programacionxx">
+        <insert tableName="asistencias">
+            <column name="socio_id" valueNumeric="1"/>
+            <column name="fecha" value="2026-06-01 08:00:00"/>
+            <column name="presente" valueNumeric="1"/>
+        </insert>
+        <insert tableName="asistencias">
+            <column name="socio_id" valueNumeric="2"/>
+            <column name="fecha" value="2026-06-01 08:15:00"/>
+            <column name="presente" valueNumeric="1"/>
+        </insert>
+        <insert tableName="asistencias">
+            <column name="socio_id" valueNumeric="3"/>
+            <column name="fecha" value="2026-06-01 08:30:00"/>
+            <column name="presente" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
@@ -18,10 +21,13 @@ import cl.gimnasio.membresias.repository.MembresiaRepository;
 @Service
 public class MembresiaService {
 
+    private static final Logger log = LoggerFactory.getLogger(MembresiaService.class);
+
     @Autowired
     private MembresiaRepository membresiaRepository;
 
     public Membresia contratarPlan(MembresiaDTO membresiaDTO) {
+        log.info("Ejecutando contratarPlan en MembresiaService");
         Membresia membresia = membresiaDTO.toModel();
         Map<String, Object> respuesta;
 
@@ -47,15 +53,18 @@ public class MembresiaService {
     }
 
     public List<Membresia> listarMembresias() {
+        log.info("Ejecutando listarMembresias en MembresiaService");
         return membresiaRepository.findAll();
     }
 
     public Membresia obtenerPorId(Long id) {
+        log.info("Ejecutando obtenerPorId en MembresiaService");
         return membresiaRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Error: Membresía no encontrada."));
     }
 
     public Membresia actualizarMembresia(Long id, MembresiaDTO membresia) {
+        log.info("Ejecutando actualizarMembresia en MembresiaService");
         Membresia actual = obtenerPorId(id);
         actual.setSocioId(membresia.getSocioId());
         actual.setTipoPlan(membresia.getTipoPlan());
@@ -67,6 +76,7 @@ public class MembresiaService {
     }
 
     public void eliminarMembresia(Long id) {
+        log.warn("Ejecutando eliminarMembresia en MembresiaService");
         if (!membresiaRepository.existsById(id)) {
             throw new ResourceNotFoundException("Error: Membresía no encontrada.");
         }

@@ -2,6 +2,9 @@ package cl.gimnasio.inventario.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
@@ -20,11 +23,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class InventarioControllerV2 {
 
+    private static final Logger log = LoggerFactory.getLogger(InventarioControllerV2.class);
+
     private final InventarioService inventarioService;
     private final InventarioModelAssembler assembler;
 
     @GetMapping
     public ResponseEntity<CollectionModel<EntityModel<InventarioDTO>>> getAllInventario() {
+        log.info("Ejecutando getAllInventario en InventarioControllerV2");
         List<EntityModel<InventarioDTO>> inventario = inventarioService.getAllInventario().stream()
                 .map(InventarioDTO::fromModel)
                 .map(assembler::toModel)
@@ -34,6 +40,7 @@ public class InventarioControllerV2 {
 
     @GetMapping("/{id}")
     public ResponseEntity<EntityModel<InventarioDTO>> getInventarioById(@PathVariable Long id) {
+        log.info("Ejecutando getInventarioById en InventarioControllerV2");
         InventarioDTO inventario = InventarioDTO.fromModel(inventarioService.getInventarioById(id));
         return ResponseEntity.ok(assembler.toModel(inventario));
     }

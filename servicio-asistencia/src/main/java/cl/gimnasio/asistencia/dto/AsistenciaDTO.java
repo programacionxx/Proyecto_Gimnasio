@@ -3,6 +3,9 @@ package cl.gimnasio.asistencia.dto;
 import cl.gimnasio.asistencia.entity.Asistencia;
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,8 +17,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AsistenciaDTO {
     private Long id;
+    @NotNull(message = "El socio es obligatorio")
+    @Positive(message = "El ID del socio debe ser mayor que cero")
     private Long socioId;
+    @NotNull(message = "La fecha es obligatoria")
     private LocalDateTime fecha;
+    @NotNull(message = "El estado de asistencia es obligatorio")
     private Boolean presente;
 
     public Asistencia toModel() {

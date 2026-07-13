@@ -2,6 +2,9 @@ package cl.gimnasio.entrenadores.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
@@ -19,12 +22,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EntrenadorControllerV2 {
 
+    private static final Logger log = LoggerFactory.getLogger(EntrenadorControllerV2.class);
+
     private final EntrenadorService entrenadorService;
     private final EntrenadorModelAssembler assembler;
 
 
     @GetMapping
     public ResponseEntity<CollectionModel<EntityModel<EntrenadorDTO>>> getAllEntrenadores() {
+        log.info("Ejecutando getAllEntrenadores en EntrenadorControllerV2");
         List<EntityModel<EntrenadorDTO>> entrenadores = entrenadorService.getAllEntrenadores().stream()
                 .map(EntrenadorDTO::fromModel)
                 .map(assembler::toModel)
@@ -34,6 +40,7 @@ public class EntrenadorControllerV2 {
 
     @GetMapping("/{id}")
     public ResponseEntity<EntityModel<EntrenadorDTO>> getEntrenadorById(@PathVariable Long id) {
+        log.info("Ejecutando getEntrenadorById en EntrenadorControllerV2");
         EntrenadorDTO entrenador = EntrenadorDTO.fromModel(entrenadorService.getEntrenadorById(id));
         return ResponseEntity.ok(assembler.toModel(entrenador));
     }

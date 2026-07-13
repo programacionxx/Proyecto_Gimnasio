@@ -2,6 +2,9 @@ package cl.gimnasio.reservas.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
@@ -17,6 +20,8 @@ import cl.gimnasio.reservas.service.ReservaService;
 @RequestMapping("/api/reservas/v2")
 public class ReservaControllerV2 {
 
+    private static final Logger log = LoggerFactory.getLogger(ReservaControllerV2.class);
+
     private final ReservaService reservaService;
     private final ReservaModelAssembler assembler;
 
@@ -27,6 +32,7 @@ public class ReservaControllerV2 {
 
     @GetMapping
     public CollectionModel<EntityModel<ReservaDTO>> getAllReservas() {
+        log.info("Ejecutando getAllReservas en ReservaControllerV2");
         List<EntityModel<ReservaDTO>> reservas = reservaService.findAll().stream()
                 .map(ReservaDTO::fromModel)
                 .map(assembler::toModel)
@@ -36,6 +42,7 @@ public class ReservaControllerV2 {
 
     @GetMapping("/{id}")
     public EntityModel<ReservaDTO> getReservaById(@PathVariable Long id) {
+        log.info("Ejecutando getReservaById en ReservaControllerV2");
         ReservaDTO reserva = ReservaDTO.fromModel(reservaService.findById(id)
                 .orElseThrow(() -> new ReservaNotFoundException(id)));
         return assembler.toModel(reserva);

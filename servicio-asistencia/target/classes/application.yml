@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: servicio-asistencia
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://db:3306/db_gimnasio_asistencia?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+eureka:
+  client:
+    service-url:
+      defaultZone: http://servidor-eureka:8761/eureka/
+server:
+  port: 8090
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

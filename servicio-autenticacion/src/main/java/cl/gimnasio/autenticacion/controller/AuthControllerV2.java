@@ -2,6 +2,9 @@ package cl.gimnasio.autenticacion.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -16,6 +19,8 @@ import cl.gimnasio.autenticacion.service.AuthService;
 @RequestMapping("/api/auth/v2")
 public class AuthControllerV2 {
 
+    private static final Logger log = LoggerFactory.getLogger(AuthControllerV2.class);
+
     @Autowired
     private AuthService authService;
 
@@ -25,6 +30,7 @@ public class AuthControllerV2 {
 
     @GetMapping
     public CollectionModel<EntityModel<UsuarioDTO>> listarUsuarios() {
+        log.info("Ejecutando listarUsuarios en AuthControllerV2");
         List<EntityModel<UsuarioDTO>> usuarios = authService.listarUsuarios().stream()
                 .map(UsuarioDTO::fromModel)
                 .map(assembler::toModel)
@@ -34,6 +40,7 @@ public class AuthControllerV2 {
 
     @GetMapping("/{id}")
     public EntityModel<UsuarioDTO> obtenerUsuario(@PathVariable Long id) {
+        log.info("Ejecutando obtenerUsuario en AuthControllerV2");
         UsuarioDTO usuario = UsuarioDTO.fromModel(authService.obtenerPorId(id));
         return assembler.toModel(usuario);
     }
